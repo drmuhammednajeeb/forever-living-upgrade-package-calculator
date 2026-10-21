@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حاسبة طلب باقة الترقية والعضوية - Forever Living</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="calculator-container">
+    <h2>حاسبة طلب باقة الترقية والعضوية</h2>
+    
+    <!-- قسم بيانات العضوية -->
+    <div class="membership-section">
+        <div class="section-title">بيانات العضوية (لإصدار العضوية في الشركة):</div>
+        
+        <div class="input-group">
+            <label for="fullNameEn">الاسم الثلاثي بالإنجليزي:</label>
+            <input type="text" id="fullNameEn" dir="ltr" placeholder="Full Name in English">
+        </div>
+
+        <div class="input-group">
+            <label for="clientPhone">رقم الجوال:</label>
+            <input type="tel" id="clientPhone" dir="ltr" placeholder="05xxxxxxxx">
+        </div>
+
+        <div class="input-group">
+            <label for="clientEmail">البريد الإلكتروني:</label>
+            <input type="email" id="clientEmail" dir="ltr" placeholder="example@email.com">
+        </div>
+
+        <div class="input-group">
+            <label for="birthDate">تاريخ الميلاد:</label>
+            <input dir="ltr">
+        </div>
+
+        <div class="input-group">
+            <label for="sponsorId">رقم عضوية السبونسر (Sponsor ID):</label>
+            <input type="text" id="sponsorId" dir="ltr" placeholder="12-digit Sponsor ID">
+        </div>
+    </div>
+
+    <!-- قسم تفاصيل البوكس -->
+    <div class="package-card">
+        <div class="package-title">بوكس الترقية الأساسي (Start Your Journey Combo Pak)</div>
+        <div class="package-details">قيمة النقاط: <strong>2 CC</strong></div>
+        
+        <!-- صورة المنتجات -->
+        <div class="package-image">
+            <img src="combo-pak.jpg" alt="محتويات باقة Start Your Journey Combo Pak">
+        </div>
+
+        <div class="section-title">محتويات البوكس:</div>
+        <ul class="contents-list">
+            <li>ألو ليبس (مرطب الشفاه) - عدد 2</li>
+            <li>فوريفر برايت توث جل (معجون الأسنان) - عدد 2</li>
+            <li>ألو فيرست (بخاخ) - عدد 2</li>
+            <li>ألو بروبوليس كريم - عدد 1</li>
+            <li>ألو فيرا جلي - عدد 1</li>
+            <li>ألو مويسترايزنج لوشن (مرطب) - عدد 1</li>
+            <li>ألو إيفر شيلد ديودرنت (مزيل العرق) - عدد 2</li>
+            <li>فوريفر ألو سكراب (مقشر) - عدد 2</li>
+            <li>صابون أفوكادو للوجه والجسم - عدد 2</li>
+            <li>فوريفر فايبر (الألياف) - عدد 1</li>
+            <li>ألو أكتيفاتور - عدد 1</li>
+            <li>ألو جوجوبا شامبو - عدد 2</li>
+            <li>زيت تغذية الشعر - عدد 1</li>
+            <li>زيت تجديد البشرة - عدد 1</li>
+            <li>قناع ألو بايو-سيلولوز ماسك - عدد 1</li>
+        </ul>
+    </div>
+
+    <!-- قسم الإجمالي -->
+    <div class="result-box">
+        <div class="result-label">إجمالي التكلفة الإجمالية</div>
+        <div class="result-value" id="totalPrice">1,599 ر.س</div>
+    </div>
+
+    <!-- زر الإرسال التفاعلي -->
+    <button type="button" id="whatsappBtn" class="whatsapp-btn" onclick="sendToWhatsApp(event)">📲 اعتمد طلب الترقية والعضوية عبر واتساب</button>
+</div>
+
+<script>
+    function sendToWhatsApp(e) {
+        e.preventDefault();
+        
+        const nameEn = document.getElementById('fullNameEn').value.trim();
+        const phone = document.getElementById('clientPhone').value.trim();
+        const email = document.getElementById('clientEmail').value.trim();
+        const birthDate = document.getElementById('birthDate').value;
+        const sponsorId = document.getElementById('sponsorId').value.trim();
+
+        if (!nameEn || !phone || !email || !birthDate || !sponsorId) {
+            alert('الرجاء إدخال جميع البيانات المطلوبة لإصدار العضوية (الاسم بالإنجليزي، رقم الجوال، البريد الإلكتروني، تاريخ الميلاد، ورقم السپونسر).');
+            return;
+        }
+
+        const message = "مرحباً، أود اعتماد طلب الترقية وإصدار العضوية:\n\n" +
+                        "📋 *بيانات طلب العضوية:*\n" +
+                        "- الاسم بالإنجليزي: " + nameEn + "\n" +
+                        "- رقم الجوال: " + phone + "\n" +
+                        "- البريد الإلكتروني: " + email + "\n" +
+                        "- تاريخ الميلاد: " + birthDate + "\n" +
+                        "- رقم السپونسر: " + sponsorId + "\n\n" +
+                        "📦 *تفاصيل الطلب:*\n" +
+                        "- البوكس: Start Your Journey Combo Pak\n" +
+                        "- النقاط: 2 CC\n" +
+                        "- المحتويات:\n" +
+                        "  • ألو ليبس (2)\n" +
+                        "  • فوريفر برايت توث جل (2)\n" +
+                        "  • ألو فيرست (2)\n" +
+                        "  • ألو بروبوليس كريم (1)\n" +
+                        "  • ألو فيرا جلي (1)\n" +
+                        "  • ألو مويسترايزنج لوشن (1)\n" +
+                        "  • ألو إيفر شيلد ديودرنت (2)\n" +
+                        "  • فوريفر ألو سكراب (2)\n" +
+                        "  • صابون أفوكادو للوجه والجسم (2)\n" +
+                        "  • فوريفر فايبر (1)\n" +
+                        "  • ألو أكتيفاتور (1)\n" +
+                        "  • ألو جوجوبا شامبو (2)\n" +
+                        "  • زيت تغذية الشعر (1)\n" +
+                        "  • زيت تجديد البشرة (1)\n" +
+                        "  • قناع ألو بايو-سيلولوز ماسك (1)\n" +
+                        "- الإجمالي: 1,599 ريال سعودي";
+
+        const encodedMessage = encodeURIComponent(message);
+        const companyNumber = "966546723820"; 
+        
+        const whatsappURL = "https://wa.me/" + companyNumber + "?text=" + encodedMessage;
+        window.open(whatsappURL, '_blank');
+    }
+</script>
+
+</body>
+</html>
